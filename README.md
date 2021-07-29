@@ -24,6 +24,6 @@ In this activity I learnt:
 https://conso97.github.io/Note-Taker/ 
 
 <img id="styledImage"
-    src="Note-taker.jpg" width="70%" height="70%"
+    src="Note-Taker.jpg" width="70%" height="70%"
 alt="Note Taker"
   />
