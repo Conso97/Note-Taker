@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const express = require("express");
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,17 +20,45 @@ app.get("/notes", (req, res) => {
 
 app.get("/api/notes", (req, res) => {
 
-    res.send("API NOTES");
+    res.send(JSON.stringify(loadDBData()));
 
 });
 
 app.post("/api/notes", (req, res) => {
 
-    console.log(req.body);
+    var dbData = loadDBData();
 
-    res.send("POST NOTES");
+    req.body.id = uuidv4();
+    dbData.push(req.body);
+
+    saveDBData(dbData);
+
+    console.log(dbData);
+
+    res.send(JSON.stringify(dbData));
 
 })
+
+app.delete("/api/notes/:id", (req, res) => {
+    var id = req.params.id;
+
+    var dbData = loadDBData();
+
+    var deleteIdx = null;
+
+    for (var i = 0; i < dbData.length; i++) {
+        if (dbData[i].id == id) {
+            deleteIdx = i;
+        }
+    }
+
+    if (deleteIdx != null) {
+        dbData.splice(deleteIdx, 1); // delete this note
+        saveDBData(dbData);
+    }   
+
+    res.send(JSON.stringify(dbData));
+});
 
 app.get("*", (req, res) => {
 
@@ -40,24 +69,25 @@ app.listen(PORT, () => {
     console.log(`App listening on PORT http://localhost:${PORT}`);
 });
 
+const loadDBData = () => {
 
-const newNote = {
-    "title":"A new Note",
-    "text":"Testing text"
-};
+    const data = fs.readFileSync(path.join( __dirname, "db/db.json"),
+            {encoding:'utf8', flag:'r'});
 
-// Get the current Notes by reading them from 'db.json'
-fs.readFile( path.join( __dirname, "db/db.json"), "utf8", (err,data) => {
+    return JSON.parse(data);
+}
 
-    // Append a new note to the collection of notes 
-    console.log (data)
-    const notes = JSON.parse(data);
-    
-
-    //Save the newly extended collection back to db.json
+const saveDBData = (notes) => {
     const notesJSON = JSON.stringify(notes);
 
-});
+    // Get the current Notes by reading them from 'db.json'
+    fs.writeFile(path.join( __dirname, "db/db.json"), notesJSON, (err) => {
 
-
+        if (err)
+            console.log(err);
+        else {
+            console.log("DB updated successfully\n");
+        }
+    });
+}
 

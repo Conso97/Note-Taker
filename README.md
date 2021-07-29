@@ -15,8 +15,8 @@ In this activity I learnt:
 
 * The step by step breaking down method of the acceptance criteria on HW assignment and the importance of commenting especially after the code has been erased and you cannot remember what was on the code line previously.
 
-* The importance of stackoverflow when trying to figure out what the inspect mistake made means/wants you to correct what you need fixed. 
+* The importance of stackoverflow when trying to figure out what an error message means/what you need fixed. 
 
-* How to use modify starter code to create an application called Note Taker that can be used to write and save notes. 
+* How to modify starter code to create an application called Note Taker that can be used to write and save notes. 
 
-* How to use an Express.js back on an application that then saves and retrieves note data from a JSON file. 
+* How to use an Express.js backend to route API requests to save and retrieve note data from a JSON file. 
