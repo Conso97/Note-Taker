@@ -20,3 +20,10 @@ In this activity I learnt:
 * How to modify starter code to create an application called Note Taker that can be used to write and save notes. 
 
 * How to use an Express.js backend to route API requests to save and retrieve note data from a JSON file. 
+
+https://conso97.github.io/Note-Taker/ 
+
+<img id="styledImage"
+    src="Note-taker.jpg" width="70%" height="70%"
+alt="Note Taker"
+  />
