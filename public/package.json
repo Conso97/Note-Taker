@@ -1,12 +1,14 @@
 {
-  "name": "starwars",
+  "name": "note-taker",
   "version": "1.0.0",
-  "description": "Helps you find the characters you are looking for",
+  "description": "",
   "main": "server.js",
-  "dependencies": {
-     "express": "^4.16.3"
-  },
   "scripts": {
     "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
   }
 }
